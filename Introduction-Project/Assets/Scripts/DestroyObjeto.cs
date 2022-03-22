@@ -23,4 +23,5 @@ public class DestroyObjeto : MonoBehaviour
             Destroy(transform.gameObject);
         }
     }
+
 }
