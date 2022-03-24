@@ -59,7 +59,6 @@ public class PoderesInimigo : MonoBehaviour
     {
         enemyRigidBody = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
-        //player = GetComponent<GameObject>();
 
         isAvailablePower1 = true;
         isAvailablePower2 = true;
@@ -175,12 +174,12 @@ public class PoderesInimigo : MonoBehaviour
                 case "SAA":
                     if (isLookingLeft && isGrounded && isAvailablePower2)
                     {
-                        var tempPrefabBarreira = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x - 0.75f, transform.position.y + 0.7f, -1), Quaternion.identity);
+                        var tempPrefabBarreira = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x - 0.75f, transform.position.y + 1.3f, -1), Quaternion.identity);
                         StartCoroutine(StartCooldownPower2());
                     }
                     else if (!isLookingLeft && isGrounded && isAvailablePower2)
                     {
-                        var tempPrefabBarreira = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x + 0.75f, transform.position.y + 0.7f, -1), Quaternion.identity);
+                        var tempPrefabBarreira = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x + 0.75f, transform.position.y + 1.3f, -1), Quaternion.identity);
                         StartCoroutine(StartCooldownPower2());
                     }
                     break;
@@ -189,14 +188,14 @@ public class PoderesInimigo : MonoBehaviour
                 case "SSA":
                     if (isLookingLeft && isGrounded && isAvailablePower3)
                     {
-                        var tempPrefabRock = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x - 0.55f, transform.position.y + 0.7f, -1), Quaternion.identity);
+                        var tempPrefabRock = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x - 0.55f, transform.position.y + 1.3f, -1), Quaternion.identity);
                         tempPrefabRock.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
                         tempPrefabRock.GetComponent<Rigidbody2D>().AddForce(new Vector2(-speedBarreira, 0));
                         StartCoroutine(StartCooldownPower3());
                     }
                     else if (!isLookingLeft && isGrounded && isAvailablePower3)
                     {
-                        var tempPrefabRock = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x + 0.55f, transform.position.y + 0.7f, -1), Quaternion.identity);
+                        var tempPrefabRock = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x + 0.55f, transform.position.y + 1.3f, -1), Quaternion.identity);
                         tempPrefabRock.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
                         tempPrefabRock.GetComponent<Rigidbody2D>().AddForce(new Vector2(speedBarreira, 0));
                         StartCoroutine(StartCooldownPower3());
@@ -258,10 +257,6 @@ public class PoderesInimigo : MonoBehaviour
                 case "DSD":
                 case "DDS":
                     print("poder 8");
-                    break;
-
-                case "DDD":
-                    print("poder 9");
                     break;
 
                 case "ASD":
