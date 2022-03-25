@@ -7,7 +7,8 @@ public class DestroyPedra : MonoBehaviour
     private float currentTime;
     public float deleteTime;
     public bool isTrigger;
-    public bool isBarreira;
+    private Animator pedraAnimator;
+    private bool isBarreira;
 
 
 
@@ -16,11 +17,13 @@ public class DestroyPedra : MonoBehaviour
     {
         isBarreira = false;
         currentTime = 0f;
+        pedraAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        pedraAnimator.SetBool("isBarreira", isBarreira);
         isTrigger = true;
         currentTime += Time.deltaTime;
         if (currentTime >= deleteTime)
