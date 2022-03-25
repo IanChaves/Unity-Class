@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6824463427002012083}
   - component: {fileID: 5329810799450182054}
   - component: {fileID: 3523180997649256160}
-  - component: {fileID: 9123873570057080853}
   - component: {fileID: 2446081772993416652}
+  - component: {fileID: 5408553809969649088}
   m_Layer: 0
   m_Name: Barreira
   m_TagString: Barreira
@@ -126,32 +126,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 7
---- !u!61 &9123873570057080853
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5470384702650654937}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8adf69386cfb9524a8b4e8837aa898b4, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0074844956, y: -0.1571768}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.0062894, y: 3.018868}
-    newSize: {x: 1.0062894, y: 3.018868}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.6619972, y: 2.3452525}
-  m_EdgeRadius: 0
 --- !u!114 &2446081772993416652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,3 +139,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deleteTime: 3
+--- !u!60 &5408553809969649088
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5470384702650654937}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 8adf69386cfb9524a8b4e8837aa898b4, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.0062894, y: 3.018868}
+    newSize: {x: 1.0062894, y: 3.018868}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.251701, y: 0.816589}
+      - {x: 0.25074708, y: 0.94256055}
+      - {x: 0.18702888, y: 0.9429498}
+      - {x: 0.19029787, y: 1.0075676}
+      - {x: 0.06263575, y: 1.006418}
+      - {x: 0.062506974, y: 0.942259}
+      - {x: -0.06148529, y: 0.94223136}
+      - {x: -0.062334538, y: 0.8804547}
+      - {x: -0.12525749, y: 0.88059443}
+      - {x: -0.12579274, y: 0.81758624}
+      - {x: -0.18836045, y: 0.8172508}
+      - {x: -0.18890667, y: 0.43994963}
+      - {x: -0.2515607, y: 0.4402429}
+      - {x: -0.25149727, y: -0.3146634}
+      - {x: -0.31441236, y: -0.31490815}
+      - {x: -0.31389856, y: -1.2575325}
+      - {x: -0.25176978, y: -1.257567}
+      - {x: -0.25022072, y: -1.322752}
+      - {x: 0.25047022, y: -1.3219032}
+      - {x: 0.25150228, y: -1.2570652}
+      - {x: 0.31340224, y: -1.2579851}
+      - {x: 0.3154623, y: 0.8166462}

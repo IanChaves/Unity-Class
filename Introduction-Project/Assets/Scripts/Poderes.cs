@@ -176,6 +176,9 @@ public class Poderes : MonoBehaviour
                     if (isLookingLeft && isGrounded && isAvailablePower2)
                     {
                         var tempPrefabBarreira = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x - 0.75f, transform.position.y +1.3f, -1), Quaternion.identity);
+                        if (isLookingLeft) {
+                            tempPrefabBarreira.GetComponent<SpriteRenderer>().flipX = true;
+                        }
                         StartCoroutine(StartCooldownPower2());
                     }
                     else if(!isLookingLeft && isGrounded && isAvailablePower2)
@@ -276,11 +279,6 @@ public class Poderes : MonoBehaviour
         isLookingLeft = !isLookingLeft;
         float x = transform.localScale.x * -1;
         transform.localScale = new Vector3(x,transform.localScale.y, transform.localScale.z);
-    }
-
-    void FixedUpdate()
-    {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.02f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
