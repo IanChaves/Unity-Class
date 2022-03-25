@@ -33,8 +33,8 @@ public class PoderesInimigo : MonoBehaviour
     //public float cooldownPower9;
     //public float cooldownPower10;
 
-    private bool isLookingLeft;
-    private bool isGrounded;
+    public bool isLookingLeft;
+    public bool isGrounded;
     private bool isSecondJump;
 
     public string power;
@@ -48,7 +48,7 @@ public class PoderesInimigo : MonoBehaviour
     private bool isAvailablePower4 = true;
     private bool isAvailablePower5 = true;
     private bool isAvailablePower6 = true;
-    private bool isAvailablePower7 = true;
+    //private bool isAvailablePower7 = true;
     //private bool isAvailablePower8 = true;
     //private bool isAvailablePower9 = true;
     //private bool isAvailablePower10 = true;
@@ -331,12 +331,12 @@ public class PoderesInimigo : MonoBehaviour
         yield return new WaitForSeconds(cooldownPower6);
         isAvailablePower6 = true;
     }
-    public IEnumerator StartCooldownPower7()
-    {
-        isAvailablePower7 = false;
-        yield return new WaitForSeconds(cooldownPower7);
-        isAvailablePower7 = true;
-    }
+    //public IEnumerator StartCooldownPower7()
+    //{
+    //    isAvailablePower7 = false;
+    //    yield return new WaitForSeconds(cooldownPower7);
+    //    isAvailablePower7 = true;
+    //}
     //public IEnumerator StartCooldownPower8()
     //{
     //    isAvailablePower8 = false;
