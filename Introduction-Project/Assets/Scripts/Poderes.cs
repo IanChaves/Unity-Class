@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,7 +28,7 @@ public class Poderes : MonoBehaviour
     public float cooldownPower4;
     public float cooldownPower5;
     public float cooldownPower6;
-    public float cooldownPower7;
+    //public float cooldownPower7;
     //public float cooldownPower8;
     //public float cooldownPower9;
     //public float cooldownPower10;

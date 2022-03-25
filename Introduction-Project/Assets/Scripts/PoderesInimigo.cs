@@ -28,7 +28,7 @@ public class PoderesInimigo : MonoBehaviour
     public float cooldownPower4;
     public float cooldownPower5;
     public float cooldownPower6;
-    public float cooldownPower7;
+    //public float cooldownPower7;
     //public float cooldownPower8;
     //public float cooldownPower9;
     //public float cooldownPower10;
@@ -186,20 +186,20 @@ public class PoderesInimigo : MonoBehaviour
                 case "ASS":
                 case "SAS":
                 case "SSA":
-                    if (isLookingLeft && isGrounded && isAvailablePower3)
-                    {
-                        var tempPrefabRock = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x - 0.55f, transform.position.y + 1.3f, -1), Quaternion.identity);
-                        tempPrefabRock.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-                        tempPrefabRock.GetComponent<Rigidbody2D>().AddForce(new Vector2(-speedBarreira, 0));
-                        StartCoroutine(StartCooldownPower3());
-                    }
-                    else if (!isLookingLeft && isGrounded && isAvailablePower3)
-                    {
-                        var tempPrefabRock = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x + 0.55f, transform.position.y + 1.3f, -1), Quaternion.identity);
-                        tempPrefabRock.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-                        tempPrefabRock.GetComponent<Rigidbody2D>().AddForce(new Vector2(speedBarreira, 0));
-                        StartCoroutine(StartCooldownPower3());
-                    }
+                    //if (isLookingLeft && isGrounded && isAvailablePower3)
+                    //{
+                    //    var tempPrefabRock = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x - 0.55f, transform.position.y + 1.3f, -1), Quaternion.identity);
+                    //    tempPrefabRock.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                    //    tempPrefabRock.GetComponent<Rigidbody2D>().AddForce(new Vector2(-speedBarreira, 0));
+                    //    StartCoroutine(StartCooldownPower3());
+                    //}
+                    //else if (!isLookingLeft && isGrounded && isAvailablePower3)
+                    //{
+                    //    var tempPrefabRock = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x + 0.55f, transform.position.y + 1.3f, -1), Quaternion.identity);
+                    //    tempPrefabRock.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                    //    tempPrefabRock.GetComponent<Rigidbody2D>().AddForce(new Vector2(speedBarreira, 0));
+                    //    StartCoroutine(StartCooldownPower3());
+                    //}
 
                     break;
 

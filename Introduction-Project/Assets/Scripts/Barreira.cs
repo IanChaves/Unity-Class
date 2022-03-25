@@ -18,61 +18,9 @@ public class Barreira : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) 
-            && (poderes.power != "AAA" 
-            && poderes.power != "AAS" 
-            && poderes.power != "ASA" 
-            && poderes.power != "SAA" 
-            && poderes.power != "ASS" 
-            && poderes.power != "SAS" 
-            && poderes.power != "SSA" 
-            && poderes.power != "AAD" 
-            && poderes.power != "ADA" 
-            && poderes.power != "DAA" 
-            && poderes.power != "ADD" 
-            && poderes.power != "DAD" 
-            && poderes.power != "DDA" 
-            && poderes.power != "SSS" 
-            && poderes.power != "SSD" 
-            && poderes.power != "SDS" 
-            && poderes.power != "DSS" 
-            && poderes.power != "SDD" 
-            && poderes.power != "DSD" 
-            && poderes.power != "DDS" 
-            && poderes.power != "ASD" 
-            && poderes.power != "ADS" 
-            && poderes.power != "SAD" 
-            && poderes.power != "SDA" 
-            && poderes.power != "DSA" 
-            && poderes.power != "DAS")){spaceCheck = true;}
+        if (Input.GetKeyDown(KeyCode.Space) && (poderes.power == "DDD")){spaceCheck = true;}
 
-        else if (Input.GetKeyUp(KeyCode.Space)
-            && (poderes.power != "AAA"
-            && poderes.power != "AAS"
-            && poderes.power != "ASA"
-            && poderes.power != "SAA"
-            && poderes.power != "ASS"
-            && poderes.power != "SAS"
-            && poderes.power != "SSA"
-            && poderes.power != "AAD"
-            && poderes.power != "ADA"
-            && poderes.power != "DAA"
-            && poderes.power != "ADD"
-            && poderes.power != "DAD"
-            && poderes.power != "DDA"
-            && poderes.power != "SSS"
-            && poderes.power != "SSD"
-            && poderes.power != "SDS"
-            && poderes.power != "DSS"
-            && poderes.power != "SDD"
-            && poderes.power != "DSD"
-            && poderes.power != "DDS"
-            && poderes.power != "ASD"
-            && poderes.power != "ADS"
-            && poderes.power != "SAD"
-            && poderes.power != "SDA"
-            && poderes.power != "DSA"
-            && poderes.power != "DAS")){spaceCheck = false;}
+        else if (Input.GetKeyUp(KeyCode.Space) && (poderes.power == "DDD")){spaceCheck = false;}
     }
 
     IEnumerator OnTriggerStay2D(UnityEngine.Collider2D collision)
