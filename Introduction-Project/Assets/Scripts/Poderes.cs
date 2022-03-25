@@ -24,7 +24,7 @@ public class Poderes : MonoBehaviour
 
     public float cooldownPower1;
     public float cooldownPower2;
-    public float cooldownPower3;
+    //public float cooldownPower3;
     public float cooldownPower4;
     public float cooldownPower5;
     public float cooldownPower6;
@@ -45,7 +45,7 @@ public class Poderes : MonoBehaviour
 
     private bool isAvailablePower1;
     private bool isAvailablePower2;
-    private bool isAvailablePower3;
+    //private bool isAvailablePower3;
     private bool isAvailablePower4;
     private bool isAvailablePower5;
     private bool isAvailablePower6;
@@ -69,7 +69,7 @@ public class Poderes : MonoBehaviour
         saltos = 0;
         isAvailablePower1 = true;
         isAvailablePower2 = true;
-        isAvailablePower3 = true;
+        //isAvailablePower3 = true;
         isAvailablePower4 = true;
         isAvailablePower5 = true;
         isAvailablePower6 = true;

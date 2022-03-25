@@ -9,6 +9,7 @@ public class DestroyPedra : MonoBehaviour
     public bool isTrigger;
     private Animator pedraAnimator;
     private bool isBarreira;
+    public Vector3 velocity;
 
 
 
@@ -30,6 +31,7 @@ public class DestroyPedra : MonoBehaviour
         {
             Destroy(transform.gameObject);
         }
+        velocity = transform.GetComponent<Rigidbody2D>().velocity/5f;
     }
 
     public void OnCollisionEnter2D(UnityEngine.Collision2D collision)
@@ -38,7 +40,10 @@ public class DestroyPedra : MonoBehaviour
         {
             StartCoroutine(DestroyPedraAPedra());
             isBarreira = true;
-            transform.GetComponentInParent<Rigidbody2D>().velocity = new Vector3(10, 0, 0);
+
+            transform.GetComponent<Rigidbody2D>().velocity = velocity;
+
+
         }
     }
 

@@ -24,7 +24,7 @@ public class PoderesInimigo : MonoBehaviour
 
     public float cooldownPower1;
     public float cooldownPower2;
-    public float cooldownPower3;
+    //public float cooldownPower3;
     public float cooldownPower4;
     public float cooldownPower5;
     public float cooldownPower6;
@@ -44,7 +44,7 @@ public class PoderesInimigo : MonoBehaviour
 
     private bool isAvailablePower1 = true;
     private bool isAvailablePower2 = true;
-    private bool isAvailablePower3 = true;
+    //private bool isAvailablePower3 = true;
     private bool isAvailablePower4 = true;
     private bool isAvailablePower5 = true;
     private bool isAvailablePower6 = true;
@@ -62,7 +62,7 @@ public class PoderesInimigo : MonoBehaviour
 
         isAvailablePower1 = true;
         isAvailablePower2 = true;
-        isAvailablePower3 = true;
+        //isAvailablePower3 = true;
         isAvailablePower4 = true;
         //isAvailablePower5 = true;
         //isAvailablePower6 = true;
@@ -175,6 +175,10 @@ public class PoderesInimigo : MonoBehaviour
                     if (isLookingLeft && isGrounded && isAvailablePower2)
                     {
                         var tempPrefabBarreira = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x - 0.75f, transform.position.y + 1.3f, -1), Quaternion.identity);
+                        if (isLookingLeft)
+                        {
+                            tempPrefabBarreira.GetComponent<SpriteRenderer>().flipX = true;
+                        }
                         StartCoroutine(StartCooldownPower2());
                     }
                     else if (!isLookingLeft && isGrounded && isAvailablePower2)
@@ -186,21 +190,6 @@ public class PoderesInimigo : MonoBehaviour
                 case "ASS":
                 case "SAS":
                 case "SSA":
-                    //if (isLookingLeft && isGrounded && isAvailablePower3)
-                    //{
-                    //    var tempPrefabRock = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x - 0.55f, transform.position.y + 1.3f, -1), Quaternion.identity);
-                    //    tempPrefabRock.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-                    //    tempPrefabRock.GetComponent<Rigidbody2D>().AddForce(new Vector2(-speedBarreira, 0));
-                    //    StartCoroutine(StartCooldownPower3());
-                    //}
-                    //else if (!isLookingLeft && isGrounded && isAvailablePower3)
-                    //{
-                    //    var tempPrefabRock = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x + 0.55f, transform.position.y + 1.3f, -1), Quaternion.identity);
-                    //    tempPrefabRock.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-                    //    tempPrefabRock.GetComponent<Rigidbody2D>().AddForce(new Vector2(speedBarreira, 0));
-                    //    StartCoroutine(StartCooldownPower3());
-                    //}
-
                     break;
 
                 case "AAD":
@@ -219,13 +208,13 @@ public class PoderesInimigo : MonoBehaviour
                 case "DDA":
                     if (isLookingLeft && isAvailablePower5)
                     {
-                        var tempPrefabRock = Instantiate<GameObject>(atackPedra, new Vector3(transform.position.x - 0.55f, transform.position.y + 1f, -1), Quaternion.identity);
+                        var tempPrefabRock = Instantiate<GameObject>(atackPedra, new Vector3(transform.position.x - 0.65f, transform.position.y + 1f, -1), Quaternion.identity);
                         tempPrefabRock.GetComponent<Rigidbody2D>().AddForce(new Vector2(-speedRock / 1.5f, speedRock / 1.5f));
                         StartCoroutine(StartCooldownPower5());
                     }
                     else if (!isLookingLeft && isAvailablePower5)
                     {
-                        var tempPrefab = Instantiate<GameObject>(atackPedra, new Vector3(transform.position.x + 0.55f, transform.position.y + 1f, -1), Quaternion.identity);
+                        var tempPrefab = Instantiate<GameObject>(atackPedra, new Vector3(transform.position.x + 0.65f, transform.position.y + 1f, -1), Quaternion.identity);
                         tempPrefab.GetComponent<Rigidbody2D>().AddForce(new Vector2(speedRock / 1.5f, speedRock / 1.5f));
                         StartCoroutine(StartCooldownPower5());
                     }
@@ -235,13 +224,13 @@ public class PoderesInimigo : MonoBehaviour
                 case "SSS":
                     if (isLookingLeft && isAvailablePower6 && !isGrounded)
                     {
-                        var tempPrefabRock = Instantiate<GameObject>(atackPedra, new Vector3(transform.position.x - 0.55f, transform.position.y + 1f, -1), Quaternion.identity);
+                        var tempPrefabRock = Instantiate<GameObject>(atackPedra, new Vector3(transform.position.x - 0.65f, transform.position.y + 1f, -1), Quaternion.identity);
                         tempPrefabRock.GetComponent<Rigidbody2D>().AddForce(new Vector2(-speedRock / 1.5f, -speedRock / 1.5f));
                         StartCoroutine(StartCooldownPower6());
                     }
                     else if (!isLookingLeft && isAvailablePower6 && !isGrounded)
                     {
-                        var tempPrefab = Instantiate<GameObject>(atackPedra, new Vector3(transform.position.x + 0.55f, transform.position.y + 1f, -1), Quaternion.identity);
+                        var tempPrefab = Instantiate<GameObject>(atackPedra, new Vector3(transform.position.x + 0.65f, transform.position.y + 1f, -1), Quaternion.identity);
                         tempPrefab.GetComponent<Rigidbody2D>().AddForce(new Vector2(speedRock / 1.5f, -speedRock / 1.5f));
                         StartCoroutine(StartCooldownPower6());
                     }
@@ -307,12 +296,12 @@ public class PoderesInimigo : MonoBehaviour
         yield return new WaitForSeconds(cooldownPower2);
         isAvailablePower2 = true;
     }
-    public IEnumerator StartCooldownPower3()
-    {
-        isAvailablePower3 = false;
-        yield return new WaitForSeconds(cooldownPower3);
-        isAvailablePower3 = true;
-    }
+    //public IEnumerator StartCooldownPower3()
+    //{
+    //    isAvailablePower3 = false;
+    //    yield return new WaitForSeconds(cooldownPower3);
+    //    isAvailablePower3 = true;
+    //}
     public IEnumerator StartCooldownPower4()
     {
         isAvailablePower4 = false;
