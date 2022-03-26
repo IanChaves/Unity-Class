@@ -338,6 +338,7 @@ MonoBehaviour:
   enemyPlayer: {fileID: 1398833031}
   atackTreeRocks: {fileID: 0}
   barreiraPedra: {fileID: 5470384702650654937, guid: 17a3ca5cea4a98f4a971e214703639f6, type: 3}
+  barreiraPushPedra: {fileID: 5470384702650654937, guid: b7499be7d9783d84e90a5a64d66e7a29, type: 3}
   jumpPedra: {fileID: 2535212600712255841, guid: 31bee6d78a690554fa3ff5cb95fd3a86, type: 3}
   pontuacaoEnemy: {fileID: 654835896}
   poderesInimigo: {fileID: 1398833033}
@@ -1241,6 +1242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1026392913}
   - component: {fileID: 1026392914}
+  - component: {fileID: 1026392915}
   m_Layer: 0
   m_Name: barreiraPushCheck
   m_TagString: Untagged
@@ -1286,8 +1288,23 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.5775347, y: 0.22540212}
+  m_Size: {x: 3, y: 0.1}
   m_EdgeRadius: 0
+--- !u!114 &1026392915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026392912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daae66feb8496974e8772cbd448d8a61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poderes: {fileID: 37873639}
+  isBarreira: 0
+  spaceCheck: 0
 --- !u!1 &1103859628
 GameObject:
   m_ObjectHideFlags: 0
