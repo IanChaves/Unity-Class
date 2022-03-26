@@ -14,7 +14,7 @@ public class PoderesInimigo : MonoBehaviour
     public GameObject atackTreeRocks;
     public GameObject barreiraPedra;
     public GameObject jumpPedra;
-    public Text pontuacaoEnemy;
+    public Text pontuacaoPlayer;
 
     public float speedRock;
     public float speedBarreira;
@@ -35,6 +35,7 @@ public class PoderesInimigo : MonoBehaviour
 
     public bool isLookingLeft;
     public bool isGrounded;
+    public bool isBarreira;
     private bool isSecondJump;
 
     public string power;
@@ -42,13 +43,13 @@ public class PoderesInimigo : MonoBehaviour
     private int pontos;
     private int saltos;
 
-    private bool isAvailablePower1 = true;
-    private bool isAvailablePower2 = true;
-    //private bool isAvailablePower3 = true;
-    private bool isAvailablePower4 = true;
-    private bool isAvailablePower5 = true;
-    private bool isAvailablePower6 = true;
-    //private bool isAvailablePower7 = true;
+    private bool isAvailablePower1;
+    private bool isAvailablePower2;
+    //private bool isAvailablePower3;
+    private bool isAvailablePower4;
+    private bool isAvailablePower5;
+    private bool isAvailablePower6;
+    //private bool isAvailablePower7;
     //private bool isAvailablePower8 = true;
     //private bool isAvailablePower9 = true;
     //private bool isAvailablePower10 = true;
@@ -58,32 +59,32 @@ public class PoderesInimigo : MonoBehaviour
     void Start()
     {
         enemyRigidBody = GetComponent<Rigidbody2D>();
+
         playerAnimator = GetComponent<Animator>();
 
+        speedRock *= 30;
+        speedBarreira *= 30;
+
+        pontos = 0;
+        saltos = 0;
         isAvailablePower1 = true;
         isAvailablePower2 = true;
         //isAvailablePower3 = true;
         isAvailablePower4 = true;
-        //isAvailablePower5 = true;
-        //isAvailablePower6 = true;
+        isAvailablePower5 = true;
+        isAvailablePower6 = true;
         //isAvailablePower7 = true;
         //isAvailablePower8 = true;
         //isAvailablePower9 = true;
         //isAvailablePower10 = true;
         isSecondJump = false;
-        pontos = 0;
-        saltos = 0;
-
-        speedRock *= 30;
-        speedBarreira *= 30;
 
     }
 
     // Update is called once per frame
-
     void Update()
     {
-        pontuacaoEnemy.text = pontos.ToString();
+        pontuacaoPlayer.text = pontos.ToString();
         float h = Input.GetAxisRaw("HorizontalEnemy");
         if (h > 0 && isLookingLeft == true)
         {
@@ -120,7 +121,6 @@ public class PoderesInimigo : MonoBehaviour
             enemyRigidBody.AddForce(new Vector2(0, jumpForce));
             saltos = 2;
         }
-
         float speedY = enemyRigidBody.velocity.y;
 
         enemyRigidBody.velocity = new Vector2(h * speed, speedY);
@@ -150,6 +150,7 @@ public class PoderesInimigo : MonoBehaviour
             power = power.Remove(0, 1);
             count--;
         }
+
         if (Input.GetKeyDown("joystick button 5"))
         {
             switch (power)
@@ -157,16 +158,17 @@ public class PoderesInimigo : MonoBehaviour
                 case "AAA":
                     if (isLookingLeft && isAvailablePower1)
                     {
-                        var tempPrefabRock = Instantiate<GameObject>(atackPedra, new Vector3(transform.position.x - 0.55f, transform.position.y + 1f, -1), Quaternion.identity);
+                        var tempPrefabRock = Instantiate<GameObject>(atackPedra, new Vector3(transform.position.x - 0.65f, transform.position.y + 1f, -1), Quaternion.identity);
                         tempPrefabRock.GetComponent<Rigidbody2D>().AddForce(new Vector2(-speedRock, 0));
                         StartCoroutine(StartCooldownPower1());
                     }
                     else if (!isLookingLeft && isAvailablePower1)
                     {
-                        var tempPrefab = Instantiate<GameObject>(atackPedra, new Vector3(transform.position.x + 0.55f, transform.position.y + 1f, -1), Quaternion.identity);
+                        var tempPrefab = Instantiate<GameObject>(atackPedra, new Vector3(transform.position.x + 0.65f, transform.position.y + 1f, -1), Quaternion.identity);
                         tempPrefab.GetComponent<Rigidbody2D>().AddForce(new Vector2(speedRock, 0));
                         StartCoroutine(StartCooldownPower1());
                     }
+
                     break;
 
                 case "AAS":
@@ -187,9 +189,24 @@ public class PoderesInimigo : MonoBehaviour
                         StartCoroutine(StartCooldownPower2());
                     }
                     break;
+
                 case "ASS":
                 case "SAS":
                 case "SSA":
+                    //if (isLookingLeft && isGrounded && isAvailablePower3)
+                    //{
+                    //    var tempPrefabRock = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x - 0.55f, transform.position.y + 1.3f, -1), Quaternion.identity);
+                    //    tempPrefabRock.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                    //    tempPrefabRock.GetComponent<Rigidbody2D>().AddForce(new Vector2(-speedBarreira, 0));
+                    //    StartCoroutine(StartCooldownPower3());
+                    //}
+                    //else if (!isLookingLeft && isGrounded && isAvailablePower3)
+                    //{
+                    //    var tempPrefabRock = Instantiate<GameObject>(barreiraPedra, new Vector3(transform.position.x + 0.55f, transform.position.y + 1.3f, -1), Quaternion.identity);
+                    //    tempPrefabRock.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                    //    tempPrefabRock.GetComponent<Rigidbody2D>().AddForce(new Vector2(speedBarreira, 0));
+                    //    StartCoroutine(StartCooldownPower3());
+                    //}
                     break;
 
                 case "AAD":
@@ -197,7 +214,7 @@ public class PoderesInimigo : MonoBehaviour
                 case "DAA":
                     if (isGrounded && isAvailablePower4)
                     {
-                        var tempPrefabRock = Instantiate<GameObject>(jumpPedra, new Vector3(transform.position.x - 0.062f, transform.position.y + 0.1273f, -1), Quaternion.identity);
+                        var tempPrefabRock = Instantiate<GameObject>(jumpPedra, new Vector3(transform.position.x - 0.062f, transform.position.y + 0.15f, -1), Quaternion.identity);
                         enemyRigidBody.AddForce(new Vector2(0, jumpRockForce));
                         StartCoroutine(StartCooldownPower4());
                     }
@@ -219,7 +236,6 @@ public class PoderesInimigo : MonoBehaviour
                         StartCoroutine(StartCooldownPower5());
                     }
                     break;
-
 
                 case "SSS":
                     if (isLookingLeft && isAvailablePower6 && !isGrounded)
@@ -267,20 +283,16 @@ public class PoderesInimigo : MonoBehaviour
         transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z);
     }
 
-    void FixedUpdate()
-    {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.02f);
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Respawn")
+        if (collision.tag == "Respawn")
         {
             transform.position = new Vector2(3f, -2.35f);
             enemyRigidBody.velocity = new Vector3(0, 0, 0);
             player.transform.position = new Vector2(-3f, -2.35f);
             player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
             pontos += 1;
+
         }
     }
 
@@ -344,4 +356,5 @@ public class PoderesInimigo : MonoBehaviour
     //    yield return new WaitForSeconds(cooldownPower10);
     //    isAvailablePower10 = true;
     //}
+
 }

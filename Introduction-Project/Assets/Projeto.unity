@@ -261,6 +261,7 @@ Transform:
   m_Children:
   - {fileID: 288775522}
   - {fileID: 2036825261}
+  - {fileID: 1026392913}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -334,11 +335,12 @@ MonoBehaviour:
   groundCheck: {fileID: 288775522}
   barreiraCheck: {fileID: 2036825261}
   atackPedra: {fileID: 1631934975306773033, guid: d431a9c8e9750da43b1117db2ac79790, type: 3}
-  enemyPlayer: {fileID: 0}
+  enemyPlayer: {fileID: 1398833031}
   atackTreeRocks: {fileID: 0}
   barreiraPedra: {fileID: 5470384702650654937, guid: 17a3ca5cea4a98f4a971e214703639f6, type: 3}
   jumpPedra: {fileID: 2535212600712255841, guid: 31bee6d78a690554fa3ff5cb95fd3a86, type: 3}
   pontuacaoEnemy: {fileID: 654835896}
+  poderesInimigo: {fileID: 1398833033}
   speedRock: 3000
   speedBarreira: 8000
   speed: 5
@@ -346,9 +348,11 @@ MonoBehaviour:
   jumpRockForce: 500
   cooldownPower1: 1
   cooldownPower2: 4
+  cooldownPower3: 6
   cooldownPower4: 0
   cooldownPower5: 1
   cooldownPower6: 1
+  cooldownPower7: 6
   isLookingLeft: 0
   isGrounded: 0
   isBarreira: 0
@@ -1227,6 +1231,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9089995661480831659, guid: b1dbd63a8d6522d479ef4bf9f0b60c11, type: 3}
   m_PrefabInstance: {fileID: 946979016}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1026392912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1026392913}
+  - component: {fileID: 1026392914}
+  m_Layer: 0
+  m_Name: barreiraPushCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1026392913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026392912}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.30745196, y: 1.43, z: -0.06167236}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 37873636}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1026392914
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026392912}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 6.0027776, y: -0.43521345}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.5775347, y: 0.22540212}
+  m_EdgeRadius: 0
 --- !u!1 &1103859628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,8 +1298,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1103859629}
   - component: {fileID: 1103859632}
-  - component: {fileID: 1103859631}
   - component: {fileID: 1103859630}
+  - component: {fileID: 1103859631}
   m_Layer: 0
   m_Name: barreiraCheck
   m_TagString: Untagged
@@ -1290,10 +1351,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1103859628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 014d1802483e65a49ab4b64f20aa86e6, type: 3}
+  m_Script: {fileID: 11500000, guid: b46b1a321eb3c874a971ce0a69d07667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poderes: {fileID: 0}
+  poderes: {fileID: 1398833033}
   isBarreira: 0
   spaceCheck: 0
 --- !u!58 &1103859632
@@ -1750,7 +1811,7 @@ MonoBehaviour:
   atackTreeRocks: {fileID: 0}
   barreiraPedra: {fileID: 5470384702650654937, guid: 17a3ca5cea4a98f4a971e214703639f6, type: 3}
   jumpPedra: {fileID: 2535212600712255841, guid: 31bee6d78a690554fa3ff5cb95fd3a86, type: 3}
-  pontuacaoEnemy: {fileID: 1299231677}
+  pontuacaoPlayer: {fileID: 1299231677}
   speedRock: 3000
   speedBarreira: 8000
   speed: 5
@@ -1763,6 +1824,7 @@ MonoBehaviour:
   cooldownPower6: 1
   isLookingLeft: 0
   isGrounded: 0
+  isBarreira: 0
   power: 
 --- !u!50 &1398833034
 Rigidbody2D:

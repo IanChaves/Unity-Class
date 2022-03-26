@@ -8,6 +8,7 @@ TagManager:
   - Barreira
   - Ground
   - BarreiraCheck
+  - BarreiraPush
   layers:
   - Default
   - TransparentFX
