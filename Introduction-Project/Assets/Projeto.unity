@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 37873638}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -336,7 +336,7 @@ MonoBehaviour:
   barreiraCheck: {fileID: 2036825261}
   atackPedra: {fileID: 1631934975306773033, guid: d431a9c8e9750da43b1117db2ac79790, type: 3}
   enemyPlayer: {fileID: 1398833031}
-  atackTreeRocks: {fileID: 0}
+  atackPedraGrande: {fileID: 6569253841099487923, guid: b5b1afddcc16b834ea3fd3716e401987, type: 3}
   barreiraPedra: {fileID: 5470384702650654937, guid: 17a3ca5cea4a98f4a971e214703639f6, type: 3}
   barreiraPushPedra: {fileID: 5470384702650654937, guid: b7499be7d9783d84e90a5a64d66e7a29, type: 3}
   jumpPedra: {fileID: 2535212600712255841, guid: 31bee6d78a690554fa3ff5cb95fd3a86, type: 3}
@@ -354,6 +354,7 @@ MonoBehaviour:
   cooldownPower5: 1
   cooldownPower6: 1
   cooldownPower7: 6
+  cooldownPower10: 0
   isLookingLeft: 0
   isGrounded: 0
   isBarreira: 0
@@ -1277,7 +1278,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 6.0027776, y: -0.43521345}
+  m_Offset: {x: 6.5518804, y: 1.6774719}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1288,7 +1289,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 0.1}
+  m_Size: {x: 5.9147196, y: 4.3253703}
   m_EdgeRadius: 0
 --- !u!114 &1026392915
 MonoBehaviour:
@@ -1770,7 +1771,7 @@ GameObject:
   - component: {fileID: 1398833033}
   m_Layer: 0
   m_Name: Inimigo
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1825,10 +1826,12 @@ MonoBehaviour:
   barreiraCheck: {fileID: 1103859629}
   atackPedra: {fileID: 1631934975306773033, guid: d431a9c8e9750da43b1117db2ac79790, type: 3}
   player: {fileID: 37873633}
-  atackTreeRocks: {fileID: 0}
+  atackPedraGrande: {fileID: 6569253841099487923, guid: b5b1afddcc16b834ea3fd3716e401987, type: 3}
   barreiraPedra: {fileID: 5470384702650654937, guid: 17a3ca5cea4a98f4a971e214703639f6, type: 3}
+  barreiraPushPedra: {fileID: 5470384702650654937, guid: b7499be7d9783d84e90a5a64d66e7a29, type: 3}
   jumpPedra: {fileID: 2535212600712255841, guid: 31bee6d78a690554fa3ff5cb95fd3a86, type: 3}
   pontuacaoPlayer: {fileID: 1299231677}
+  poderesPlayer: {fileID: 0}
   speedRock: 3000
   speedBarreira: 8000
   speed: 5
@@ -1836,9 +1839,13 @@ MonoBehaviour:
   jumpRockForce: 500
   cooldownPower1: 1
   cooldownPower2: 4
+  cooldownPower3: 6
   cooldownPower4: 0
   cooldownPower5: 1
   cooldownPower6: 1
+  cooldownPower7: 6
+  cooldownPower9: 0
+  cooldownPower10: 0
   isLookingLeft: 0
   isGrounded: 0
   isBarreira: 0
@@ -1947,6 +1954,7 @@ Transform:
   m_Children:
   - {fileID: 433267792}
   - {fileID: 1103859629}
+  - {fileID: 1843317034}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2573,6 +2581,79 @@ Transform:
   m_Father: {fileID: 2036930637}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!1 &1843317033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1843317034}
+  - component: {fileID: 1843317036}
+  - component: {fileID: 1843317035}
+  m_Layer: 0
+  m_Name: barreiraPushCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1843317034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843317033}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.307452, y: 1.43, z: -0.06167236}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1398833037}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1843317035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843317033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bbc350eaabf07a4b9774796dce86747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poderes: {fileID: 1398833033}
+  isBarreira: 0
+  spaceCheck: 0
+--- !u!61 &1843317036
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843317033}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 6.5518804, y: 1.6774719}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.9147196, y: 4.3253703}
+  m_EdgeRadius: 0
 --- !u!1 &1974277197
 GameObject:
   m_ObjectHideFlags: 0

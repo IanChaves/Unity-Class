@@ -20,7 +20,7 @@ public class BarreiraInimigo : MonoBehaviour
     {
         if (Input.GetKeyDown("joystick button 5") && (poderes.power == "DDD")) { spaceCheck = true; }
 
-        else if (Input.GetKeyUp("joystick button 5") && (poderes.power == "DDD")) { spaceCheck = false; }
+        else if (Input.GetKeyUp("joystick button 5")) { spaceCheck = false; }
     }
 
     IEnumerator OnTriggerStay2D(UnityEngine.Collider2D collision)

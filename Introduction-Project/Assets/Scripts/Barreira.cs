@@ -20,7 +20,7 @@ public class Barreira : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && (poderes.power == "DDD")){spaceCheck = true;}
 
-        else if (Input.GetKeyUp(KeyCode.Space) && (poderes.power == "DDD")){spaceCheck = false;}
+        else if (Input.GetKeyUp(KeyCode.Space)){spaceCheck = false;}
     }
 
     IEnumerator OnTriggerStay2D(UnityEngine.Collider2D collision)

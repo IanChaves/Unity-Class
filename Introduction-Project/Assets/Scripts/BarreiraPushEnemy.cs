@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BarreiraPush : MonoBehaviour
+public class BarreiraPushEnemy : MonoBehaviour
 {
-    public Poderes poderes;
+    public PoderesInimigo poderes;
     public bool isBarreira;
     public bool spaceCheck;
     // Start is called before the first frame update
@@ -17,12 +17,14 @@ public class BarreiraPush : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && ((poderes.power == "SDD" ) || (poderes.power == "DSD") || (poderes.power == "DDS"))) { 
-             spaceCheck = true; 
+        if (Input.GetKeyDown("joystick button 5") && ((poderes.power == "SDD") || (poderes.power == "DSD") || (poderes.power == "DDS")))
+        {
+            spaceCheck = true;
         }
 
-        else if (Input.GetKeyUp(KeyCode.Space)) { 
-            spaceCheck = false; 
+        else if (Input.GetKeyUp("joystick button 5"))
+        {
+            spaceCheck = false;
         }
     }
 
