@@ -44,11 +44,15 @@ public class BarreiraPushEnemy : MonoBehaviour
         {
             if (spaceCheck && poderes.isLookingLeft)
             {
-                collision.transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(poderes.speedBarreira / 2, 0));
+                collision.transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(poderes.speedBarreira, 0));
+                poderes.transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, poderes.jumpRockForce));
+                var tempPrefabRock = Instantiate<GameObject>(poderes.jumpPedra, new Vector3(poderes.transform.position.x - 0.062f, poderes.transform.position.y + 0.15f, -1), Quaternion.identity);
             }
             else if (spaceCheck && !poderes.isLookingLeft)
             {
-                collision.transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(-poderes.speedBarreira / 2, 0));
+                collision.transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(-poderes.speedBarreira, 0));
+                poderes.transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, poderes.jumpRockForce));
+                var tempPrefabRock = Instantiate<GameObject>(poderes.jumpPedra, new Vector3(poderes.transform.position.x - 0.062f, poderes.transform.position.y + 0.15f, -1), Quaternion.identity);
             }
         }
     }

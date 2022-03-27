@@ -23,6 +23,11 @@ public class GroundCheckEnemy : MonoBehaviour
         {
             player.isGrounded = true;
         }
+        if (collision.tag == "Buraco")
+        {
+            player.transform.GetComponent<Collider2D>().enabled = false;
+            StartCoroutine(LigaCollisor());
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -31,5 +36,11 @@ public class GroundCheckEnemy : MonoBehaviour
         {
             player.isGrounded = false;
         }
+    }
+
+    public IEnumerator LigaCollisor()
+    {
+        yield return new WaitForSeconds(0.5f);
+        player.transform.GetComponent<Collider2D>().enabled = true;
     }
 }

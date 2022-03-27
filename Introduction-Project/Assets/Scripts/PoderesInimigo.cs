@@ -10,6 +10,7 @@ public class PoderesInimigo : MonoBehaviour
     public Transform groundCheck;
     public Transform barreiraCheck;
     public GameObject atackPedra;
+    public GameObject buraco;
     public GameObject player;
     public GameObject atackPedraGrande;
     public GameObject barreiraPedra;
@@ -23,7 +24,7 @@ public class PoderesInimigo : MonoBehaviour
     public float speed;
     public float jumpForce;
     public float jumpRockForce;
-    private float currentTime;
+    public float currentTime;
 
     public float cooldownPower1;
     public float cooldownPower2;
@@ -32,14 +33,14 @@ public class PoderesInimigo : MonoBehaviour
     public float cooldownPower5;
     public float cooldownPower6;
     public float cooldownPower7;
-    public float cooldownPower9;
     public float cooldownPower10;
 
     public bool isLookingLeft;
     public bool isGrounded;
     public bool isBarreira;
     private bool isSecondJump;
-    private bool isTimeCheck;
+    public bool isTimeCheck;
+    public bool isRespawn;
 
     public string power;
     private int count;
@@ -53,14 +54,16 @@ public class PoderesInimigo : MonoBehaviour
     private bool isAvailablePower5;
     private bool isAvailablePower6;
     private bool isAvailablePower7;
-    private bool isAvailablePower10;
+    public bool isAvailablePower10;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        isRespawn = false;
         StartCoroutine(StartCooldownPower10());
         playerRigidBody = GetComponent<Rigidbody2D>();
+        var colliderPlayer = GetComponent<Collider2D>();
 
         playerAnimator = GetComponent<Animator>();
 
@@ -84,6 +87,13 @@ public class PoderesInimigo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isRespawn || poderesPlayer.isRespawn)
+        {
+            isRespawn = false;
+            poderesPlayer.isRespawn = false;
+            currentTime = 0f;
+            poderesPlayer.currentTime = 0f;
+        }
         currentTime += Time.deltaTime;
         if (currentTime >= cooldownPower10 && isTimeCheck)
         {
@@ -200,16 +210,15 @@ public class PoderesInimigo : MonoBehaviour
                 case "ASS":
                 case "SAS":
                 case "SSA":
-                    if (poderesPlayer.isLookingLeft && isGrounded && isAvailablePower3 && poderesPlayer.isGrounded && (Mathf.Abs((transform.position.x - player.transform.position.x)) <= 8 || Mathf.Abs((transform.position.x - player.transform.position.x)) >= 2))
+                    if (isGrounded && isAvailablePower3 && poderesPlayer.isGrounded && (transform.position.x - poderesPlayer.transform.position.x > 0))
                     {
-                        var tempPrefabBarreira = Instantiate<GameObject>(barreiraPushPedra, new Vector3(player.transform.position.x + 0.75f, player.transform.position.y + 1.30f, -1), Quaternion.identity);
-                        tempPrefabBarreira.GetComponent<SpriteRenderer>().flipX = true;
+                        var tempPrefabBarreira = Instantiate<GameObject>(barreiraPushPedra, new Vector3(poderesPlayer.transform.position.x - 0.75f, poderesPlayer.transform.position.y + 1.30f, -1), Quaternion.identity);
                         tempPrefabBarreira.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
                         StartCoroutine(StartCooldownPower3());
                     }
-                    else if (!poderesPlayer.isLookingLeft && isGrounded && isAvailablePower3 && poderesPlayer.isGrounded && Mathf.Abs((transform.position.x - player.transform.position.x)) < 6)
+                    else if (isGrounded && isAvailablePower3 && poderesPlayer.isGrounded && (transform.position.x - poderesPlayer.transform.position.x < 0))
                     {
-                        var tempPrefabBarreira = Instantiate<GameObject>(barreiraPushPedra, new Vector3(player.transform.position.x - 0.75f, player.transform.position.y + 1.30f, -1), Quaternion.identity);
+                        var tempPrefabBarreira = Instantiate<GameObject>(barreiraPushPedra, new Vector3(poderesPlayer.transform.position.x + 0.75f, poderesPlayer.transform.position.y + 1.30f, -1), Quaternion.identity);
                         tempPrefabBarreira.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
                         StartCoroutine(StartCooldownPower3());
                     }
@@ -265,17 +274,23 @@ public class PoderesInimigo : MonoBehaviour
                 case "SSD":
                 case "SDS":
                 case "DSS":
-                    if (poderesPlayer.isLookingLeft && isGrounded && isAvailablePower7 && poderesPlayer.isGrounded && (Mathf.Abs((transform.position.x - player.transform.position.x)) <= 8 || Mathf.Abs((transform.position.x - player.transform.position.x)) >= 2))
+                    if (isGrounded && isAvailablePower7 && poderesPlayer.isLookingLeft && poderesPlayer.isGrounded)
                     {
-                        var tempPrefabBarreira = Instantiate<GameObject>(barreiraPushPedra, new Vector3(player.transform.position.x - 0.75f, player.transform.position.y + 1.30f, -1), Quaternion.identity);
-                        tempPrefabBarreira.GetComponent<SpriteRenderer>().flipX = true;
-                        tempPrefabBarreira.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                        var tempPrefabBarreira = Instantiate<GameObject>(buraco, new Vector3(poderesPlayer.transform.position.x - 0.75f, poderesPlayer.transform.position.y + 0.1f, -1), Quaternion.identity);
                         StartCoroutine(StartCooldownPower7());
                     }
-                    else if (!poderesPlayer.isLookingLeft && isGrounded && isAvailablePower7 && poderesPlayer.isGrounded && Mathf.Abs((transform.position.x - player.transform.position.x)) < 6)
+                    else if (isGrounded && isAvailablePower7 && !poderesPlayer.isLookingLeft && poderesPlayer.isGrounded)
                     {
-                        var tempPrefabBarreira = Instantiate<GameObject>(barreiraPushPedra, new Vector3(player.transform.position.x + 0.75f, player.transform.position.y + 1.30f, -1), Quaternion.identity);
-                        tempPrefabBarreira.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                        var tempPrefabBarreira = Instantiate<GameObject>(buraco, new Vector3(poderesPlayer.transform.position.x + 0.75f, poderesPlayer.transform.position.y + 0.1f, -1), Quaternion.identity);
+                        StartCoroutine(StartCooldownPower7());
+                    }else if (isGrounded && isAvailablePower7 && poderesPlayer.isLookingLeft && !poderesPlayer.isGrounded)
+                    {
+                        var tempPrefabBarreira = Instantiate<GameObject>(buraco, new Vector3(poderesPlayer.transform.position.x - 0.75f, -3.115f, -1), Quaternion.identity);
+                        StartCoroutine(StartCooldownPower7());
+                    }
+                    else if (isGrounded && isAvailablePower7 && !poderesPlayer.isLookingLeft && !poderesPlayer.isGrounded)
+                    {
+                        var tempPrefabBarreira = Instantiate<GameObject>(buraco, new Vector3(poderesPlayer.transform.position.x + 0.75f, -3.115f, -1), Quaternion.identity);
                         StartCoroutine(StartCooldownPower7());
                     }
                     break;
@@ -352,9 +367,14 @@ public class PoderesInimigo : MonoBehaviour
     {
         if (collision.tag == "Respawn")
         {
-            transform.position = new Vector2(3f, -2.35f);
+            isRespawn = true;
+            isAvailablePower10 = false;
+            poderesPlayer.isAvailablePower10 = false;
+            isTimeCheck = true;
+            poderesPlayer.isTimeCheck = true;
+            transform.position = new Vector2(5.43f, 1.77f);
             playerRigidBody.velocity = new Vector3(0, 0, 0);
-            player.transform.position = new Vector2(-3f, -2.35f);
+            player.transform.position = new Vector2(-4.84f, 1.77f);
             player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
             pontos += 1;
 
@@ -407,7 +427,14 @@ public class PoderesInimigo : MonoBehaviour
     {
         isAvailablePower10 = false;
         yield return new WaitForSeconds(cooldownPower10);
-        isAvailablePower10 = true;
+        if (isTimeCheck)
+        {
+            isAvailablePower10 = false;
+        }
+        else
+        {
+            isAvailablePower10 = true;
+        }
     }
 
 }

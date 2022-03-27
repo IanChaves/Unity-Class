@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - BarreiraCheck
   - BarreiraPush
+  - Buraco
   layers:
   - Default
   - TransparentFX
