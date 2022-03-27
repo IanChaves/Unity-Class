@@ -90,6 +90,7 @@ public class Poderes : MonoBehaviour
     {
         if(isRespawn || poderesInimigo.isRespawn)
         {
+            DestroyObjects();
             isRespawn = false;
             poderesInimigo.isRespawn = false;
             currentTime = 0f;
@@ -210,15 +211,26 @@ public class Poderes : MonoBehaviour
                 case "ASS":
                 case "SAS":
                 case "SSA":
-                    if (isGrounded && isAvailablePower3 && poderesInimigo.isGrounded && (transform.position.x - poderesInimigo.transform.position.x > 0))
+                    if (isAvailablePower3 && poderesInimigo.isGrounded && (transform.position.x - poderesInimigo.transform.position.x > 0))
                     {
                         var tempPrefabBarreira = Instantiate<GameObject>(barreiraPushPedra, new Vector3(poderesInimigo.transform.position.x - 0.75f, poderesInimigo.transform.position.y + 1.30f, -1), Quaternion.identity);
                         tempPrefabBarreira.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
                         StartCoroutine(StartCooldownPower3());
                     }
-                    else if(isGrounded && isAvailablePower3 && poderesInimigo.isGrounded && (transform.position.x - poderesInimigo.transform.position.x < 0))
+                    else if(isAvailablePower3 && poderesInimigo.isGrounded && (transform.position.x - poderesInimigo.transform.position.x < 0))
                     {
                         var tempPrefabBarreira = Instantiate<GameObject>(barreiraPushPedra, new Vector3(poderesInimigo.transform.position.x + 0.75f, poderesInimigo.transform.position.y + 1.30f, -1), Quaternion.identity);
+                        tempPrefabBarreira.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                        StartCoroutine(StartCooldownPower3());
+                    }else if (isAvailablePower3 && !poderesInimigo.isGrounded && (transform.position.x - poderesInimigo.transform.position.x > 0))
+                    {
+                        var tempPrefabBarreira = Instantiate<GameObject>(barreiraPushPedra, new Vector3(poderesInimigo.transform.position.x - 0.75f, -1.829202f, -1), Quaternion.identity);
+                        tempPrefabBarreira.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                        StartCoroutine(StartCooldownPower3());
+                    }
+                    else if (isAvailablePower3 && !poderesInimigo.isGrounded && (transform.position.x - poderesInimigo.transform.position.x < 0))
+                    {
+                        var tempPrefabBarreira = Instantiate<GameObject>(barreiraPushPedra, new Vector3(poderesInimigo.transform.position.x + 0.75f, -1.829202f, -1), Quaternion.identity);
                         tempPrefabBarreira.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
                         StartCoroutine(StartCooldownPower3());
                     }
@@ -274,22 +286,22 @@ public class Poderes : MonoBehaviour
                 case "SSD":
                 case "SDS":
                 case "DSS":
-                    if (isGrounded && isAvailablePower7 && poderesInimigo.isLookingLeft && poderesInimigo.isGrounded)
+                    if (isAvailablePower7 && poderesInimigo.isLookingLeft && poderesInimigo.isGrounded)
                     {
                         var tempPrefabBarreira = Instantiate<GameObject>(buraco, new Vector3(poderesInimigo.transform.position.x - 0.75f, poderesInimigo.transform.position.y + 0.1f, -1), Quaternion.identity);
                         StartCoroutine(StartCooldownPower7());
                     }
-                    else if (isGrounded && isAvailablePower7 && !poderesInimigo.isLookingLeft && poderesInimigo.isGrounded)
+                    else if (isAvailablePower7 && !poderesInimigo.isLookingLeft && poderesInimigo.isGrounded)
                     {
                         var tempPrefabBarreira = Instantiate<GameObject>(buraco, new Vector3(poderesInimigo.transform.position.x + 0.75f, poderesInimigo.transform.position.y + 0.1f, -1), Quaternion.identity);
                         StartCoroutine(StartCooldownPower7());
                     }
-                    else if (isGrounded && isAvailablePower7 && poderesInimigo.isLookingLeft && !poderesInimigo.isGrounded)
+                    else if (isAvailablePower7 && poderesInimigo.isLookingLeft && !poderesInimigo.isGrounded)
                     {
                         var tempPrefabBarreira = Instantiate<GameObject>(buraco, new Vector3(poderesInimigo.transform.position.x - 0.75f, -3.115f, -1), Quaternion.identity);
                         StartCoroutine(StartCooldownPower7());
                     }
-                    else if (isGrounded && isAvailablePower7 && !poderesInimigo.isLookingLeft && !poderesInimigo.isGrounded)
+                    else if (isAvailablePower7 && !poderesInimigo.isLookingLeft && !poderesInimigo.isGrounded)
                     {
                         var tempPrefabBarreira = Instantiate<GameObject>(buraco, new Vector3(poderesInimigo.transform.position.x + 0.75f, -3.115f, -1), Quaternion.identity);
                         StartCoroutine(StartCooldownPower7());
@@ -435,6 +447,42 @@ public class Poderes : MonoBehaviour
         else
         {
             isAvailablePower10 = true;
+        }
+    }
+
+    public static void DestroyObjects()
+    {
+        // Coleta os objetos
+        GameObject[] barreira = GameObject.FindGameObjectsWithTag("Barreira");
+        GameObject[] barreiraPush = GameObject.FindGameObjectsWithTag("BarreiraPush");
+        GameObject[] pedra = GameObject.FindGameObjectsWithTag("Pedra");
+        GameObject[] pedraGrande = GameObject.FindGameObjectsWithTag("PedraGrande");
+        GameObject[] buraco = GameObject.FindGameObjectsWithTag("Buraco");
+
+        for (var i = 0; i < barreira.Length; i++)
+        {
+            // Destrói o item em si
+            Destroy(barreira[i]);
+        }
+        for (var i = 0; i < barreiraPush.Length; i++)
+        {
+            // Destrói o item em si
+            Destroy(barreiraPush[i]);
+        }
+        for (var i = 0; i < pedra.Length; i++)
+        {
+            // Destrói o item em si
+            Destroy(pedra[i]);
+        }
+        for (var i = 0; i < pedraGrande.Length; i++)
+        {
+            // Destrói o item em si
+            Destroy(pedraGrande[i]);
+        }
+        for (var i = 0; i < buraco.Length; i++)
+        {
+            // Destrói o item em si
+            Destroy(buraco[i]);
         }
     }
 

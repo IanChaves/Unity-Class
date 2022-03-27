@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8156573767064189339}
   m_Layer: 0
   m_Name: Pedra
-  m_TagString: Untagged
+  m_TagString: Pedra
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 8adf69386cfb9524a8b4e8837aa898b4, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!60 &1631934975306773036
 PolygonCollider2D:

@@ -19,7 +19,7 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Ground" || collision.tag == "Barreira")
+        if(collision.tag == "Ground" || collision.tag == "Barreira" || collision.tag == "PedraGrande" || collision.tag == "Pedra")
         {
             player.isGrounded = true;
         }
@@ -32,7 +32,7 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Ground" || collision.tag == "Barreira")
+        if (collision.tag == "Ground" || collision.tag == "Barreira" || collision.tag == "PedraGrande" || collision.tag == "Pedra")
         {
             player.isGrounded = false;
         }

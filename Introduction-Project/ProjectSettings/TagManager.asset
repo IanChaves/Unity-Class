@@ -10,6 +10,8 @@ TagManager:
   - BarreiraCheck
   - BarreiraPush
   - Buraco
+  - Pedra
+  - PedraGrande
   layers:
   - Default
   - TransparentFX

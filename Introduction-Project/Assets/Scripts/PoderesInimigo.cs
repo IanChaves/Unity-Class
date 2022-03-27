@@ -210,15 +210,27 @@ public class PoderesInimigo : MonoBehaviour
                 case "ASS":
                 case "SAS":
                 case "SSA":
-                    if (isGrounded && isAvailablePower3 && poderesPlayer.isGrounded && (transform.position.x - poderesPlayer.transform.position.x > 0))
+                    if (isAvailablePower3 && poderesPlayer.isGrounded && (transform.position.x - poderesPlayer.transform.position.x > 0))
                     {
                         var tempPrefabBarreira = Instantiate<GameObject>(barreiraPushPedra, new Vector3(poderesPlayer.transform.position.x - 0.75f, poderesPlayer.transform.position.y + 1.30f, -1), Quaternion.identity);
                         tempPrefabBarreira.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
                         StartCoroutine(StartCooldownPower3());
                     }
-                    else if (isGrounded && isAvailablePower3 && poderesPlayer.isGrounded && (transform.position.x - poderesPlayer.transform.position.x < 0))
+                    else if (isAvailablePower3 && poderesPlayer.isGrounded && (transform.position.x - poderesPlayer.transform.position.x < 0))
                     {
                         var tempPrefabBarreira = Instantiate<GameObject>(barreiraPushPedra, new Vector3(poderesPlayer.transform.position.x + 0.75f, poderesPlayer.transform.position.y + 1.30f, -1), Quaternion.identity);
+                        tempPrefabBarreira.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                        StartCoroutine(StartCooldownPower3());
+                    }
+                    else if (isAvailablePower3 && !poderesPlayer.isGrounded && (transform.position.x - poderesPlayer.transform.position.x > 0))
+                    {
+                        var tempPrefabBarreira = Instantiate<GameObject>(barreiraPushPedra, new Vector3(poderesPlayer.transform.position.x - 0.75f, -1.829202f, -1), Quaternion.identity);
+                        tempPrefabBarreira.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                        StartCoroutine(StartCooldownPower3());
+                    }
+                    else if (isAvailablePower3 && !poderesPlayer.isGrounded && (transform.position.x - poderesPlayer.transform.position.x < 0))
+                    {
+                        var tempPrefabBarreira = Instantiate<GameObject>(barreiraPushPedra, new Vector3(poderesPlayer.transform.position.x + 0.75f, -1.829202f, -1), Quaternion.identity);
                         tempPrefabBarreira.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
                         StartCoroutine(StartCooldownPower3());
                     }
@@ -274,21 +286,21 @@ public class PoderesInimigo : MonoBehaviour
                 case "SSD":
                 case "SDS":
                 case "DSS":
-                    if (isGrounded && isAvailablePower7 && poderesPlayer.isLookingLeft && poderesPlayer.isGrounded)
+                    if (isAvailablePower7 && poderesPlayer.isLookingLeft && poderesPlayer.isGrounded)
                     {
                         var tempPrefabBarreira = Instantiate<GameObject>(buraco, new Vector3(poderesPlayer.transform.position.x - 0.75f, poderesPlayer.transform.position.y + 0.1f, -1), Quaternion.identity);
                         StartCoroutine(StartCooldownPower7());
                     }
-                    else if (isGrounded && isAvailablePower7 && !poderesPlayer.isLookingLeft && poderesPlayer.isGrounded)
+                    else if (isAvailablePower7 && !poderesPlayer.isLookingLeft && poderesPlayer.isGrounded)
                     {
                         var tempPrefabBarreira = Instantiate<GameObject>(buraco, new Vector3(poderesPlayer.transform.position.x + 0.75f, poderesPlayer.transform.position.y + 0.1f, -1), Quaternion.identity);
                         StartCoroutine(StartCooldownPower7());
-                    }else if (isGrounded && isAvailablePower7 && poderesPlayer.isLookingLeft && !poderesPlayer.isGrounded)
+                    }else if (isAvailablePower7 && poderesPlayer.isLookingLeft && !poderesPlayer.isGrounded)
                     {
                         var tempPrefabBarreira = Instantiate<GameObject>(buraco, new Vector3(poderesPlayer.transform.position.x - 0.75f, -3.115f, -1), Quaternion.identity);
                         StartCoroutine(StartCooldownPower7());
                     }
-                    else if (isGrounded && isAvailablePower7 && !poderesPlayer.isLookingLeft && !poderesPlayer.isGrounded)
+                    else if (isAvailablePower7 && !poderesPlayer.isLookingLeft && !poderesPlayer.isGrounded)
                     {
                         var tempPrefabBarreira = Instantiate<GameObject>(buraco, new Vector3(poderesPlayer.transform.position.x + 0.75f, -3.115f, -1), Quaternion.identity);
                         StartCoroutine(StartCooldownPower7());
